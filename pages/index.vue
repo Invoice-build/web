@@ -1,17 +1,6 @@
 <template>
   <div class="py-0 md:py-16">
     <div class="invoice-container mx-auto">
-      <div class="rounded border border-orange-500 bg-orange-100 p-4 mb-4">
-        <div class="flex items-center">
-          <base-icon name="fas fa-exclamation-triangle text-orange-500" />
-          <div class="ml-2">
-            This app is no longer
-            <a href="https://github.com/Invoice-build" class="whitespace-pre-wrap text-blue-500 underline">maintained</a>,
-            please use at your own risk.
-          </div>
-        </div>
-      </div>
-
       <invoice-form :editable="true" @saved="successHandler" />
     </div>
   </div>
