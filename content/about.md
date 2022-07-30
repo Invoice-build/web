@@ -22,7 +22,7 @@ Perhaps one day it might provide the option to utilize the more interesting paym
 
 This is what I love so much about Ethereum, the composability of value transfer, there are so many options and everything is open.
 
-I have also open-sourced everything about Invoice.build, the code, roadmap and analytics. I have written a little about why I did that here: https://garethfullers.site/blog/im-open-sourcing-my-next-side-project/
+I have also open-sourced everything about Invoice.build, the code and analytics. I have written a little about why I did that here: https://garethfullers.site/blog/im-open-sourcing-my-next-side-project/
 
 If you have any questions please get in touch here: hello@invoice.build
 

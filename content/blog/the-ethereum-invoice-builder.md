@@ -44,7 +44,10 @@ In the meantime, I have added a couple of settings as a stop-gap for these conce
 
 ![Payment dialog](/images/blog/posts/the-ethereum-invoice-builder/invoice-settings.png)
 
-In addition to these privacy settings, I have made everything possible about how the app is built and run public. This includes the [code](https://github.com/Invoice-build), [roadmap](https://trello.com/b/RKj2K6Hz/product-roadmap), [analytics](https://app.usefathom.com/share/qktowsha/invoice.build#/?range=last_7_days&site=27918), basically everything except the data stored in the database.
+In addition to these privacy settings, I have made everything possible about how
+the app is built and run public. This includes the
+[code](https://github.com/Invoice-build) and [analytics](https://app.usefathom.com/share/qktowsha/invoice.build#/?range=last_7_days&site=27918),
+basically everything except the data stored in the database.
 
 ## What it might become
 As discussed already, the primary goal is to move the entire invoice creation and data storage on-chain. 
