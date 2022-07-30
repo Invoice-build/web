@@ -24,7 +24,7 @@
     "@walletconnect/client": "^1.2.1",
     "@walletconnect/qrcode-modal": "^1.2.1",
     "crypto-js": "^4.0.0",
-    "nuxt": "^2.13.0",
+    "nuxt": "^2.15.8",
     "nuxt-i18n": "^6.13.1",
     "v-click-outside": "^3.1.2",
     "v-hotkey": "^0.8.0",
