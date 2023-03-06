@@ -55,7 +55,8 @@ export default {
         { label: this.$t('labels.about'), icon: 'fas fa-info-circle', url: '/about', external: false },
         { label: this.$t('labels.blog'), icon: 'fas fa-rss', url: '/blog', external: false },
         { label: this.$t('labels.bip'), icon: 'fas fa-pencil-ruler', url: '/bip', external: false },
-        { label: this.$t('labels.legal'), icon: 'fas fa-balance-scale', url: '/legal', external: false }
+        { label: this.$t('labels.legal'), icon: 'fas fa-balance-scale', url: '/legal', external: false },
+        { label: this.$t('labels.requestFeature'), icon: 'fas fa-star', url: 'https://invoicebuild.canny.io/feature-requests', external: true }
       ]
     }
   },
