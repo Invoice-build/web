@@ -1,14 +1,12 @@
 <template>
   <tr>
     <td :class="['text-left p-2 align-top', { 'bg-orange-100': (rowIndex % 2 == 0 && !value.description) }]">
-      <base-textarea
+      <base-text-input
         v-if="editable"
         v-model="value.description"
         :placeholder="`${$t('labels.item_details')}...`"
         :rules="[isRequired()]"
         :mb="0"
-        rows="1"
-        cols="30"
         required
         absolute-error
       />

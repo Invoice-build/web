@@ -113,7 +113,7 @@ export default {
   },
 
   beforeMount () {
-    this.generateinvoiceHash(this.invoice)
+    if (this.invoice) this.generateinvoiceHash(this.invoice)
   },
 
   methods: {

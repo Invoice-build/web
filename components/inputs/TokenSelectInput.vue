@@ -40,20 +40,28 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
+
+const defaultToken = {
+  id: 1,
+  address: '0x0000000000000000000000000000000000000000',
+  network: 'mainnet',
+  code: 'ETH',
+  standard: 'native'
+}
 
 export default {
   name: 'TokenSelectInput',
 
   props: {
     network: { type: String, required: true },
-    selected: { type: Object, required: true },
+    selected: { type: Object, default: () => (defaultToken) },
     disabled: { type: Boolean, default: false }
   },
 
   data () {
     return {
-      selected_: {},
+      selected_: defaultToken,
       active: false
     }
   },
@@ -83,6 +91,10 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      getTokens: 'tokens/get'
+    }),
+
     selectHandler (token) {
       this.selected_ = token
       this.active = false

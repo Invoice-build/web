@@ -1,7 +1,10 @@
 <template>
   <div class="flex flex-col md:flex-row justify-between items-start">
     <div>
-      <h1 class="text-gray-500 text-sm mb-2">Ethereum invoice</h1>
+      <h1 class="text-gray-500 text-sm mb-2">
+        Ethereum invoice
+      </h1>
+
       <div class="flex items-center text-3xl font-light text-gray-900">
         <token-select-input
           :network="value.network"
@@ -9,9 +12,9 @@
           :disabled="!editable"
           @change="tokenChangeHandler"
         />
-        <h1 class="ml-3">
+        <h2 class="ml-3">
           {{ $t('labels.invoice') }}
-        </h1>
+        </h2>
         <span class="ml-2 text-gray-500">#</span>
         <div class="w-20">
           <base-text-input

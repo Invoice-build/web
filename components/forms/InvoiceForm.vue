@@ -40,17 +40,8 @@
             {{ $t('labels.summary') }}
           </h2>
         </div>
-        <line-items-card-list
-          v-if="$mq === 'sm'"
-          v-model="form.line_items_attributes"
-          :invoice="form"
-          :currency-code="selectedToken.code"
-          :editable="editable"
-          @change="(newLineItems) => { form.line_items_attributes = newLineItems }"
-          @tax-change="taxChangeHandler"
-        />
         <line-items-table
-          v-else
+          v-if="!isClient"
           v-model="form.line_items_attributes"
           :invoice="form"
           :currency-code="selectedToken.code"
@@ -58,6 +49,26 @@
           @change="(newLineItems) => { form.line_items_attributes = newLineItems }"
           @tax-change="taxChangeHandler"
         />
+        <template v-else>
+          <line-items-card-list
+            v-if="$mq === 'sm'"
+            v-model="form.line_items_attributes"
+            :invoice="form"
+            :currency-code="selectedToken.code"
+            :editable="editable"
+            @change="(newLineItems) => { form.line_items_attributes = newLineItems }"
+            @tax-change="taxChangeHandler"
+          />
+          <line-items-table
+            v-else
+            v-model="form.line_items_attributes"
+            :invoice="form"
+            :currency-code="selectedToken.code"
+            :editable="editable"
+            @change="(newLineItems) => { form.line_items_attributes = newLineItems }"
+            @tax-change="taxChangeHandler"
+          />
+        </template>
       </div>
 
       <div v-if="editable || !!form.description" class="mt-12">
@@ -173,6 +184,7 @@ export default {
     ...mapState({
       invoice: state => state.invoices.current,
       tokens: state => state.tokens.all,
+      tokensLoading: state => state.tokens.loading,
       provider: state => state.provider
     }),
 
@@ -181,8 +193,12 @@ export default {
       hasPendingTx: 'invoices/eth_transactions/hasPending'
     }),
 
+    isClient () {
+      return !!process.client
+    },
+
     selectedToken () {
-      return this.tokens.find(t => t.id === this.form.token_id)
+      return this.tokens.find(t => t.id === this.form.token_id || 1)
     },
 
     params () {
@@ -202,12 +218,18 @@ export default {
         if (!this.editable) this.form = mergeDeep({}, this.form, newInvoice)
       },
       deep: true
+    },
+
+    tokensLoading (isLoading) {
+      if (!isLoading) {
+        this.setDefaultToken()
+      }
     }
   },
 
   beforeMount () {
     this.form = mergeDeep({}, this.form, this.invoice)
-    this.setDefaultToken()
+    this.setDefaultToken(1)
   },
 
   methods: {
@@ -255,9 +277,13 @@ export default {
       this.form.tax_bps = newTaxBps
     },
 
-    setDefaultToken () {
-      if (this.form.token_id) return
-      this.form.token_id = this.tokens.find(token => token.code === 'ETH').id
+    setDefaultToken (tokenId = null) {
+      if (this.form.token_id && this.form.token_id !== 1) return
+      if (tokenId) {
+        this.form.token_id = tokenId
+      } else {
+        this.form.token_id = this.tokens.find(token => token.code === 'ETH').id
+      }
     },
 
     generateInvoiceHash () {

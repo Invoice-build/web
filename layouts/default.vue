@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Nuxt v-if="!loading" />
+    <Nuxt />
     <app-nav />
     <app-snackbars />
   </div>
@@ -17,19 +17,11 @@ export default {
     AppSnackbars
   },
 
-  data () {
-    return {
-      loading: true
-    }
-  },
-
   async beforeMount () {
     try {
       await this.getTokens()
     } catch (error) {
       console.error(error)
-    } finally {
-      this.loading = false
     }
   },
 

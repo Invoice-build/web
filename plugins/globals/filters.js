@@ -1,8 +1,9 @@
 import { isNumberCheck } from '~/lib/validations'
 
 export const money = val => {
+  if (!process.browser) return
   val = parseFloat(val)
-  const locale = window.navigator.userLanguage || window.navigator.language
+  const locale = window?.navigator?.userLanguage || window?.navigator?.language || 'en-US'
 
   if (!isNumberCheck(val)) return parseFloat(0.0).toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 6 })
   return val.toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 6 })
