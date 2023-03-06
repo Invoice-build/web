@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-col md:flex-row justify-between items-start">
     <div>
+      <h1 class="text-gray-500 text-sm mb-2">Ethereum invoice</h1>
       <div class="flex items-center text-3xl font-light text-gray-900">
         <token-select-input
           :network="value.network"
