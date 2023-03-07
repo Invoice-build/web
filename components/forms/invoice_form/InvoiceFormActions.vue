@@ -56,13 +56,13 @@
       @close="paymentDialog = false"
       @success="paymentDialog = false; $emit('signed-tx')"
     />
-    <no-ssr>
+    <client-only>
       <prefill-dialog
         :show="prefillDialog"
         :url="`https://${$config.APP_DOMAIN}?prefill=${invoiceHash}`"
         @close="prefillDialog = false"
       />
-    </no-ssr>
+    </client-only>
   </div>
 </template>
 

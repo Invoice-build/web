@@ -115,8 +115,11 @@ export default {
   },
 
   watch: {
-    value () {
-      this.$emit('change', this.value)
+    value: {
+      handler (newValue) {
+        this.$emit('change', newValue)
+      },
+      deep: true
     }
   },
 

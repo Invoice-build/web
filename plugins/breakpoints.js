@@ -9,5 +9,5 @@ Vue.use(VueMq, {
     xl: 1280,
     xxl: Infinity
   },
-  defaultBreakpoint: 'sm' // customize this for SSR
+  defaultBreakpoint: 'md' // customize this for SSR
 })

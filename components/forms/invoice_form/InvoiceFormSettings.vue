@@ -18,6 +18,7 @@
           :placeholder="`${$t('labels.enter_password')}...`"
           :disabled="!editable"
           class="flex-1"
+          autocomplete="on"
         />
         <p class="text-xs text-gray-400">
           {{ $t('hints.password') }}

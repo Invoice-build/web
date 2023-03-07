@@ -4,7 +4,7 @@
       <invoice-form-header
         v-model="form"
         :editable="editable"
-        @change="(newForm) => { form = newForm }"
+        @change="handleNewForm"
       />
 
       <div class="flex flex-wrap mt-12 -mx-4">
@@ -40,8 +40,8 @@
             {{ $t('labels.summary') }}
           </h2>
         </div>
-        <line-items-table
-          v-if="!isClient"
+        <line-items-card-list
+          v-if="$mq === 'sm'"
           v-model="form.line_items_attributes"
           :invoice="form"
           :currency-code="selectedToken.code"
@@ -49,26 +49,15 @@
           @change="(newLineItems) => { form.line_items_attributes = newLineItems }"
           @tax-change="taxChangeHandler"
         />
-        <template v-else>
-          <line-items-card-list
-            v-if="$mq === 'sm'"
-            v-model="form.line_items_attributes"
-            :invoice="form"
-            :currency-code="selectedToken.code"
-            :editable="editable"
-            @change="(newLineItems) => { form.line_items_attributes = newLineItems }"
-            @tax-change="taxChangeHandler"
-          />
-          <line-items-table
-            v-else
-            v-model="form.line_items_attributes"
-            :invoice="form"
-            :currency-code="selectedToken.code"
-            :editable="editable"
-            @change="(newLineItems) => { form.line_items_attributes = newLineItems }"
-            @tax-change="taxChangeHandler"
-          />
-        </template>
+        <line-items-table
+          v-else
+          v-model="form.line_items_attributes"
+          :invoice="form"
+          :currency-code="selectedToken.code"
+          :editable="editable"
+          @change="(newLineItems) => { form.line_items_attributes = newLineItems }"
+          @tax-change="taxChangeHandler"
+        />
       </div>
 
       <div v-if="editable || !!form.description" class="mt-12">
@@ -198,7 +187,8 @@ export default {
     },
 
     selectedToken () {
-      return this.tokens.find(t => t.id === this.form.token_id || 1)
+      const tokenId = this?.invoice?.token_id || this?.form?.token_id || 1
+      return this.tokens.find(t => t.id === tokenId)
     },
 
     params () {
@@ -221,7 +211,7 @@ export default {
     },
 
     tokensLoading (isLoading) {
-      if (!isLoading) {
+      if (!isLoading && Object.keys(this.invoice).length === 0) {
         this.setDefaultToken()
       }
     }
@@ -229,7 +219,9 @@ export default {
 
   beforeMount () {
     this.form = mergeDeep({}, this.form, this.invoice)
-    this.setDefaultToken(1)
+    if (Object.keys(this.invoice).length === 0) {
+      this.setDefaultToken()
+    }
   },
 
   methods: {
@@ -288,6 +280,10 @@ export default {
 
     generateInvoiceHash () {
       return CryptoJS.AES.encrypt(JSON.stringify(this.form), this.form.password).toString()
+    },
+
+    handleNewForm (newForm) {
+      this.form = newForm
     }
   }
 }

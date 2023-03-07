@@ -5,13 +5,17 @@ import Base from './base'
 export default class Network extends Base {
   constructor (args) {
     super(args)
-    this.supportedNetworks = [1, 3, 5]
+    this.supportedNetworks = [1, 5, 137]
     this.networkMap = {
       1: 'mainnet',
-      3: 'ropsten',
-      5: 'goerli'
+      5: 'goerli',
+      137: 'polygon'
     }
-    this.gasPriceUrl = 'https://www.etherchain.org/api/gasPriceOracle'
+    this.gasPriceUrlMap = {
+      1: 'https://www.etherchain.org/api/gasPriceOracle',
+      5: 'https://www.etherchain.org/api/gasPriceOracle',
+      137: 'https://gasstation-mainnet.matic.network/v2'
+    }
   }
 
   hasProvider () {
@@ -34,7 +38,8 @@ export default class Network extends Base {
   }
 
   async gasPrice () {
-    const { data: gasData } = await axios.get(this.gasPriceUrl)
+    const id = await this.getId()
+    const { data: gasData } = await axios.get(this.gasPriceUrlMap[id])
     const bn = new BN(gasData.fast)
     return bn.shiftedBy(9).toString(10)
   }

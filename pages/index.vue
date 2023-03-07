@@ -1,12 +1,17 @@
 <template>
   <div class="py-0 md:py-16">
     <div class="invoice-container mx-auto">
-      <div class="bg-blue-100 border border-blue-300 text-blue-500 p-2 rounded
-      mb-4">
-        <i class="fas fa-info-circle"></i>
+      <div class="bg-blue-100 border border-blue-300 text-blue-500 p-2 rounded mb-4">
+        <i class="fas fa-info-circle" />
         V2 coming soon,
-        <a href="https://invoicebuild.substack.com/" target="_blank"
-        rel="noreferrer" class="underline">drop your email</a>
+        <a
+          href="https://invoicebuild.substack.com/"
+          target="_blank"
+          rel="noreferrer"
+          class="underline"
+        >
+          drop your email
+        </a>
         to get early access.
       </div>
       <invoice-form :editable="true" @saved="successHandler" />

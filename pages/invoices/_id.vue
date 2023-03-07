@@ -21,7 +21,6 @@
         </div>
         <invoice-form
           v-if="!loading"
-          :invoice="invoice"
           :transactions="transactions"
           :editable="editable"
           @saved="invoiceSavedHandler"

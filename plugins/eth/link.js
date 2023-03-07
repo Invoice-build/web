@@ -1,13 +1,17 @@
-const EXPLORER_DOMAIN = 'etherscan.io'
+const explorerMap = {
+  mainnet: 'etherscan.io',
+  goerli: 'goerli.etherscan.io',
+  polygon: 'polygonscan.com'
+}
 
 export default class Link {
   address (addr, { network = 'mainnet' } = {}) {
-    const subdomain = network === 'mainnet' ? '' : `${network}.`
-    return `https://${subdomain}${EXPLORER_DOMAIN}/address/${addr}`
+    const domain = explorerMap[network] || ''
+    return `https://${domain}/address/${addr}`
   }
 
   transaction (txHash, { network = 'mainnet' } = {}) {
-    const subdomain = network === 'mainnet' ? '' : `${network}.`
-    return `https://${subdomain}${EXPLORER_DOMAIN}/tx/${txHash}`
+    const domain = explorerMap[network] || ''
+    return `https://${domain}/tx/${txHash}`
   }
 }
