@@ -1,6 +1,7 @@
 <template>
   <div>
     <Nuxt />
+    <app-footer />
     <app-nav />
     <app-snackbars />
   </div>
@@ -10,11 +11,13 @@
 import { mapActions } from 'vuex'
 import AppNav from '~/components/navs/AppNav.vue'
 import AppSnackbars from '~/components/alerts/AppSnackbars.vue'
+import AppFooter from '~/components/navs/AppFooter.vue'
 
 export default {
   components: {
     AppNav,
-    AppSnackbars
+    AppSnackbars,
+    AppFooter
   },
 
   async beforeMount () {
