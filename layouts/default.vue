@@ -20,7 +20,7 @@ export default {
     AppFooter
   },
 
-  async beforeMount () {
+  async created () {
     try {
       await this.getTokens()
     } catch (error) {

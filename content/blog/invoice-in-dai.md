@@ -10,7 +10,7 @@ author_twitter: garethafuller
 ---
 
 # How to send an invoice in DAI
-**tl;dr**: Follow this [link to the app](/?token=dai), fill out the invoice form and
+**tl;dr**: Follow this [link to the app](/?token=0x6B175474E89094C44Da98b954EedeAC495271d0F), fill out the invoice form and
 click create. Then send the payment page link to your client. For a more
 detailed explanation read on.
 

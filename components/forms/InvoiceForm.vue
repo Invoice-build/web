@@ -3,6 +3,7 @@
     <div class="p-6">
       <invoice-form-header
         v-model="form"
+        :selected-token="selectedToken"
         :editable="editable"
         @change="handleNewForm"
       />
@@ -187,7 +188,7 @@ export default {
     },
 
     selectedToken () {
-      const tokenId = this?.invoice?.token_id || this?.form?.token_id || 1
+      const tokenId = this.invoice?.token_id || this.form?.token_id || 1
       return this.tokens.find(t => t.id === tokenId)
     },
 
@@ -270,6 +271,13 @@ export default {
     },
 
     setDefaultToken (tokenId = null) {
+      if (this.$route.query.token) {
+        const tokenId = this.parseToken()
+        if (tokenId) {
+          this.form.token_id = tokenId
+          return
+        }
+      }
       if (this.form.token_id && this.form.token_id !== 1) return
       if (tokenId) {
         this.form.token_id = tokenId
@@ -284,6 +292,18 @@ export default {
 
     handleNewForm (newForm) {
       this.form = newForm
+    },
+
+    parseToken () {
+      try {
+        if (this.$route.query.token) {
+          const token = this.tokens.find(token => token.address === this.$route.query.token.toLowerCase())
+          return token?.id
+        }
+      } catch (error) {
+        console.error(error)
+        return undefined
+      }
     }
   }
 }

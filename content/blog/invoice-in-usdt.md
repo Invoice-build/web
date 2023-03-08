@@ -10,7 +10,7 @@ author_twitter: garethafuller
 ---
 
 # How to send an invoice in USDT
-**tl;dr**: Follow this [link to the app](/?token=usdt), fill out the invoice form and
+**tl;dr**: Follow this [link to the app](/?token=0xdAC17F958D2ee523a2206206994597C13D831ec7), fill out the invoice form and
 click create. Then send the payment page link to your client. For a more
 detailed explanation read on.
 

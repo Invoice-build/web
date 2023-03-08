@@ -46,7 +46,6 @@ export default {
     this.setInvoice({})
     this.setTransactions([])
     this.parsePrefill()
-    this.parseToken()
   },
 
   methods: {
@@ -69,17 +68,6 @@ export default {
           const bytes = CryptoJS.AES.decrypt(this.prefillHash, 'invoice.build')
           const prefillData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
           this.setInvoice(prefillData)
-        }
-      } catch (error) {
-        console.error(error)
-      }
-    },
-
-    parseToken () {
-      try {
-        if (this.$route.query.token) {
-          const token = this.tokens.find(token => token.code === this.$route.query.token)
-          this.invoice.token_id = token ? token.id : null
         }
       } catch (error) {
         console.error(error)

@@ -77,6 +77,10 @@ export default {
   },
 
   watch: {
+    selected (newToken) {
+      this.selected_ = newToken
+    },
+
     selected_ (newToken) {
       this.$emit('change', newToken.id)
     },

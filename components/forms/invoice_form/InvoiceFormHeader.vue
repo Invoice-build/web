@@ -80,6 +80,7 @@ export default {
 
   props: {
     value: { type: Object, required: true },
+    selectedToken: { type: Object, required: true },
     editable: { type: Boolean, required: true }
   },
 
@@ -87,11 +88,6 @@ export default {
     ...mapState({
       tokens: state => state.tokens.all
     }),
-
-    selectedToken () {
-      return this.tokens.find(t => t.id === this.value.token_id)
-    },
-
     networkLabel () {
       switch (this.value.network) {
         case 'mainnet':

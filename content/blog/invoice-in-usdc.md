@@ -10,7 +10,7 @@ author_twitter: garethafuller
 ---
 
 # How to send an invoice in USDC
-**tl;dr**: Follow this [link to the app](/?token=usdc), fill out the invoice form and
+**tl;dr**: Follow this [link to the app](/?token=0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48), fill out the invoice form and
 click create. Then send the payment page link to your client. For a more
 detailed explanation read on.
 
