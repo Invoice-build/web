@@ -5,7 +5,7 @@
         Our Blog
       </h1>
       <ul class="list-disc ml-4">
-        <li v-for="(post, i) in posts" :key="i">
+        <li v-for="(post, i) in posts" :key="i" class="mb-4">
           <nuxt-link :to="post.path" class="link">
             {{ post.title }}
           </nuxt-link>
