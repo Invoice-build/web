@@ -1,12 +1,12 @@
 <template>
-  <footer class="text-center border p-4 bg-gray-300">
+  <footer class="text-center p-4">
     <div class="flex justify-center items-center gap-8">
       <component
         v-for="(link, i) in links"
         :key="`footer-link-${i}`"
         :is="link.tag"
         v-bind="link.attrs"
-        class="text-sm text-gray-600 hover:text-black transition-all duration-300">
+        class="text-sm text-gray-500 hover:text-black transition-all duration-300">
         {{  link.label }}
       </component>
     </div>
