@@ -2,7 +2,7 @@
   <div class="flex flex-col md:flex-row justify-between items-start">
     <div>
       <h1 class="text-gray-500 text-sm mb-2">
-        Ethereum invoice
+        {{ networkLabel }} invoice
       </h1>
 
       <div class="flex items-center text-3xl font-light text-gray-900">
@@ -90,6 +90,17 @@ export default {
 
     selectedToken () {
       return this.tokens.find(t => t.id === this.value.token_id)
+    },
+
+    networkLabel () {
+      switch (this.value.network) {
+        case 'mainnet':
+          return 'Ethereum'
+        case 'polygon':
+          return 'Polygon'
+        default:
+          return 'Ethereum'
+      }
     },
 
     isOverdue () {
